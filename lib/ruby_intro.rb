@@ -1,0 +1,121 @@
+# When done, submit this entire file to the autograder.
+
+# Part 1
+
+def sum arr
+  # YOUR CODE HERE
+  len = arr.length()
+  if len == 0
+    return 0
+  end
+  ans = 0
+  arr.each do |x|
+    ans = ans + x
+  end
+  return ans
+end
+
+def max_2_sum arr
+  # YOUR CODE HERE
+  len = arr.length()
+  if len == 0
+    return 0
+  elsif len == 1
+    return arr[0]
+  else
+    first = [arr[0], arr[1]].max
+    second = [arr[0], arr[1]].min
+    pos = 2
+    while pos < len
+      temp = arr[pos]
+      if temp > second
+        second = temp
+        if temp > first
+          second = first
+          first = temp
+        end
+      end
+      pos = pos + 1
+    end
+    return first + second
+  end
+end
+
+def sum_to_n? arr, n
+  # YOUR CODE HERE
+  len = arr.length()
+  if len == 0
+    return false
+  end
+  tab = {}
+  arr.each do |x|
+    target = n - x
+    if tab.key?(target)
+      return true
+    else
+      tab[x] = ""
+    end
+  end
+  return false
+end
+
+# Part 2
+
+def hello(name)
+  # YOUR CODE HERE
+  return "Hello, " + name
+end
+
+def starts_with_consonant? s
+  # YOUR CODE HERE
+  if s.length() == 0
+    return false
+  end
+  c = s[0]
+  if c.match?(/[[:alpha:]]/)
+    if c.match?(/[[aeiouAEIOU]]/)
+      return false
+    else
+      return true
+    end
+  else
+    return false
+  end
+end
+
+def binary_multiple_of_4? s
+  # YOUR CODE HERE
+  if s.length() == 0
+    return false
+  end
+  if s.scan(/[[\D]]/).empty?
+    inte = s.to_i
+    if inte % 4 == 0
+      return true
+    else 
+      return false
+    end
+  else
+    return false
+  end
+end
+
+# Part 3
+
+class BookInStock
+# YOUR CODE HERE  
+  attr_accessor :isbn
+  attr_accessor :price
+
+  def initialize(i, pr)
+    if i.length() == 0 || pr <= 0
+      raise ArgumentError
+    end
+    @isbn = i
+    @price = pr
+  end
+
+  def price_as_string()
+    return "$" + "%.2f" % @price
+  end
+end
