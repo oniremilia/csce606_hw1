@@ -88,8 +88,8 @@ def binary_multiple_of_4? s
   if s.length() == 0
     return false
   end
-  if s.scan(/[[\D]]/).empty?
-    inte = s.to_i
+  if s.scan(/[[\D2-9]]/).empty?
+    inte = s.to_i(2)
     if inte % 4 == 0
       return true
     else 
